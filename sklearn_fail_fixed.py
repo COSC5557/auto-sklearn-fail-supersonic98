@@ -21,8 +21,8 @@ print("RF Accuracy", sklearn.metrics.accuracy_score(y_test, y_hat))
 
 from autosklearn.classification import AutoSklearnClassifier
 
-automl = AutoSklearnClassifier(time_left_for_this_task=300, dataset_compression = False,
-            resampling_strategy="cv", seed = 42)
+automl = AutoSklearnClassifier(time_left_for_this_task=300,
+            resampling_strategy="cv", resampling_strategy_arguments={"train_size": 0.67,  "shuffle": True,  "folds": 5})
 
 automl.fit(X_train, y_train)
 y_hat = automl.predict(X_test)
